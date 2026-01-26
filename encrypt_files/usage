@@ -1,0 +1,11 @@
+options:
+	-h: show this help screen
+	-p [passkey]: passkey. Set to file:[filename] to read from file. Set to IP:[filename] to read from IP.
+	-f [filename]: file to operate on
+	-m [E/D]: set mode. (E)ncrypt or (D)ecrypt. Encrypt by default. 
+	-i [IP:PORT]: IP and port to read from. 127.0.0.1:8000 by default
+	-o [filename]: output file name
+
+example usage:
+	./encrypt.sh -m E -p file:keys.txt -o enc.txt -f secret.txt
+	./encrypt.sh -m E -p IP:keys.txt -i: 127.0.0.1:8000 -o enc.txt -f secret.txt
