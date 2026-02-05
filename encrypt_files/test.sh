@@ -38,3 +38,21 @@ rm testing.txt
 rm passphrase.txt
 rm encrypted.txt
 rm decrypted.txt
+
+echo "Testing batch encryption/decryption"
+echo 123123 >> encrypt/testing.txt
+./encrypt.sh -m E -f archived -p 1234 -o encrypted -t
+./encrypt.sh -m D -f encrypted -p 1234 -o decrypted -t
+if [ $(sha256sum encrypt/testing.txt | awk '{print $1}') != $(sha256sum decrypt/testing.txt | awk '{print $1}') ]; then
+	echo "Text does not match"
+	rm encrypt/testing.txt
+	rm decrypt/testing.txt
+	rm encrypted
+	exit 1
+else
+	echo "Text matches!"
+fi
+
+rm encrypt/testing.txt
+rm decrypt/testing.txt
+rm encrypted
