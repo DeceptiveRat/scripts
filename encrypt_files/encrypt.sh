@@ -5,7 +5,7 @@ PASSKEY=""
 SERVER="127.0.0.1:8000"
 FILENAME="default"
 PASSKEYFILE=""
-OUTPUT=""
+OUTPUT="default_output"
 TAR_MODE="False"
 
 while getopts "hp:f:m:i:o:t" opt; do
@@ -14,7 +14,7 @@ while getopts "hp:f:m:i:o:t" opt; do
 		p)
 			if [ "${OPTARG%:*}" = "file" ]; then
 				PASSKEYFILE="${OPTARG#*:}"
-				PASSKEY=$(cat $PASSKEYFILE)
+				PASSKEY=$(cat "$PASSKEYFILE")
 			elif [ "${OPTARG%:*}" = "IP" ]; then
 				PASSKEYFILE="${OPTARG#*:}"
 			else
