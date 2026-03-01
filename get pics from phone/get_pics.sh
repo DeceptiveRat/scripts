@@ -13,8 +13,8 @@ COUNT=0
 
 cleanup() {
 	echo "interrupted. Removing incomplete file..."
-	if [ -n "$p" ]; then
-		rm "$p"
+	if [ -n "$tmp" ]; then
+		rm "$tmp"
 	fi
 	exit 130
 }
@@ -28,7 +28,9 @@ while read -r p; do
 		echo "skipping existing file $p..."
 	else
 		printf "\r%d/%d" $COUNT $PIC_COUNT
-		wget http://$1:8000/$p >> log.txt 2>&1
+		tmp="$p.tmp"
+		wget -O "$tmp" "http://$1:8000/$p" >> log.txt 2>&1 &&
+		mv "$tmp" "$p"
 	fi
 	COUNT=$((COUNT+1))
 done < pics.txt
