@@ -11,11 +11,25 @@ wget http://$1:8000/pics.txt >> log.txt 2>&1
 PIC_COUNT=$(cat pics.txt | wc -l)
 COUNT=0
 
+cleanup() {
+	echo "interrupted. Removing incomplete file..."
+	if [ -n "$p" ]; then
+		rm "$p"
+	fi
+	exit 130
+}
+
+trap cleanup SIGINT
+
 # get pics in list
 # save errors to file
-while read p; do
-	wget http://$1:8000/$p >> log.txt 2>&1
+while read -r p; do
+	if [ -f "$p" ]; then
+		echo "skipping existing file $p..."
+	else
+		printf "\r%d/%d" $COUNT $PIC_COUNT
+		wget http://$1:8000/$p >> log.txt 2>&1
+	fi
 	COUNT=$((COUNT+1))
-	printf "\r%d/%d" $COUNT $PIC_COUNT
 done < pics.txt
 echo ""
