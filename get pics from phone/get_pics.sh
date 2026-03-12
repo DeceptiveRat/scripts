@@ -34,4 +34,5 @@ while read -r p; do
 	fi
 	COUNT=$((COUNT+1))
 done < pics.txt
+printf "\r%d/%d" $COUNT $PIC_COUNT
 echo ""
