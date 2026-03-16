@@ -12,7 +12,7 @@ def usage():
 	print("-f <file>: file to parse. File must contain raw bytes for mft entry. If this is not provided, stdin will be used")
 
 try:
-	opts, args = getopt.getopt(sys.argv[1:], "hr:t")
+	opts, args = getopt.getopt(sys.argv[1:], "hf:")
 except getopt.GetoptError as err:
 	print(err)
 	usage()
