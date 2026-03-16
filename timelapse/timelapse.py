@@ -10,22 +10,22 @@ def usage():
 	print("usage:", sys.argv[0])
 	print("options:")
 	print("\t-h: display this help screen")
-	print("\t-f [integer]: set fps. Default: 7")
+	print("\t-f [integer]: set fps. Default: 10")
 	print("\t-l [save location]: set screenshot save location. Irrelevant without -s option. Default: .")
-	print("\t-b [integer][k/M]: set bitrate. Default: 500k")
-	print("\t-c [integer]: set capture fps. Recommended to be less than fps. Default: 2")
-	print("\t-o [filename]: set output file name. Default: timelapse.mp4")
+	print("\t-b [integer][k/M]: set bitrate. Default: 800k")
+	print("\t-c [integer]: set capture fps. Recommended to be less than fps. Default: 1")
+	print("\t-o [filename]: set output file name. Default: output.mp4")
 	print("\t-s: save screenshots. Runs ffmpeg in static mode")
-	print("\t-r [resolution]: set screen resolution. Irrelevant when using -s option. Default 1920x1080")
+	print("\t-r [resolution]: set screen resolution. Irrelevant when using -s option. Default 2560x1440")
 
-fps=7
-capture_fps=2
-bitrate="500k"
+fps=10
+capture_fps=1
+bitrate="800k"
 save_location="."
 count=1
-output_file="timelapse.mp4"
+output_file="output.mp4"
 delete_screenshots=True
-screen_resolution="1920x1080"
+screen_resolution="2560x1440"
 
 try:
 	opts, args = getopt.getopt(sys.argv[1:], "hf:l:b:c:o:sr:")
